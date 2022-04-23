@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-void main(){
+void main() {
   runApp(MyApp());
 }
 
@@ -16,29 +16,47 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+
+  AudioCache audioCache = AudioCache();
+
+  void playNote(int number){
+    audioCache.play('audios/note$number.wav');
+  }
+
+  Widget buildKey(int numberNote){
+    return Expanded(
+      child: Container(
+        color: Colors.deepPurple,
+        child: TextButton(
+          onPressed: () {
+            playNote(numberNote);
+          },
+          child: const Text(
+            "",
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("XylophoneApp"),
+        title: const Text("XylophoneApp"),
         centerTitle: true,
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: (){
-
-          },
-          child: Text("Click!!"),
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          buildKey(1),
+          buildKey(2),
+          buildKey(3),
+        ],
       ),
     );
   }
 }
-
-
-
