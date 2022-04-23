@@ -18,17 +18,16 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
 
-
   AudioCache audioCache = AudioCache();
 
-  void playNote(int number){
+  void playNote(int number) {
     audioCache.play('audios/note$number.wav');
   }
 
-  Widget buildKey(int numberNote){
+  Widget buildKey(int numberNote, Color color){
     return Expanded(
       child: Container(
-        color: Colors.deepPurple,
+        color: color,
         child: TextButton(
           onPressed: () {
             playNote(numberNote);
@@ -41,6 +40,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +53,10 @@ class HomePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          buildKey(1),
-          buildKey(2),
-          buildKey(3),
+          buildKey(1, Colors.redAccent),
+          buildKey(2, Colors.greenAccent),
+          buildKey(3, Colors.black),
+          buildKey(4, Colors.pink),
         ],
       ),
     );
